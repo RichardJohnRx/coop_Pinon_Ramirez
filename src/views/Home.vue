@@ -13,6 +13,26 @@ export default {
   name: 'Home',
   components: {
     HelloWorld
-  }
+  },
+  data() {
+    return {
+        fullname : this.$store.state.membre.fullname
+    };
+  },
+  mounted() {
+  },
+  methods: {},
 }
 </script>
+
+<style>
+#header{
+    background-color: rgb(227, 251, 255);
+}
+
+#headerBottom{
+    text-align: center;
+    background-color: #303030;
+    color: white;
+}
+</style>
