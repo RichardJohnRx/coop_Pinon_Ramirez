@@ -39,15 +39,15 @@
 
 <script>
 export default {
+  name: "Conversation",
+  props : ['conversation'],
   data() {
     return {
-      label: "",
-      topic: "",
+      label: this.conversation.label,
+      topic: this.conversation.topic,
       modify: false
     };
   },
-  name: "Conversation",
-  props : ['conversation'],
   methods : {
     effacerConversation(){
       api.delete('channels/'+this.conversation.id).then(response => {
@@ -71,7 +71,6 @@ export default {
     },
     setModify(){
       this.modify = !this.modify;
-
     }
   },
 }

@@ -43,7 +43,7 @@ export default {
 
 <style>
 #header{
-    background-color: rgb(227, 251, 255);
+    background-color: rgb(229, 253, 255);
 }
 
 #headerBottom{
