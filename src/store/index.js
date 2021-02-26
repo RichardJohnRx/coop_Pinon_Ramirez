@@ -13,6 +13,7 @@ export default new Vuex.Store({
     membre:false,
     token:false,
     conversations: [],
+    membres: []
   },
   mutations: {
     setMembre(state, membre){
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     setConversations(state,conversations){
       state.conversations = conversations;
+    },
+    setMembres(state,membres){
+      state.membres = membres;
     }
   },
   actions: {
