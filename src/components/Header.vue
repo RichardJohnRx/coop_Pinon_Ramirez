@@ -3,8 +3,8 @@
     <sui-menu class="ui menu" id="header" attached="top">
       <sui-menu-menu>
         <a class="item">Home</a>
-        <a class="item">Conversations</a>
-        <a class="item">Membres</a>
+        <router-link to="/conversations" class="item">Conversations</router-link>
+        <router-link to="/membres" class="item">Membres</router-link>
       </sui-menu-menu>
       <sui-menu-menu position="right">
         <sui-menu-item>

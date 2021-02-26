@@ -3,9 +3,7 @@
     <div class="form">
         <h2><strong>BIENVENUE À COOP</strong></h2>
       <div class="thumbnail">
-        <img
-          src="https://istsansilvestre.com/wp-content/uploads/2020/11/1111.png"
-        />
+        <img src="https://istsansilvestre.com/wp-content/uploads/2020/11/1111.png"/>
       </div>
       <form class="login-form" @submit.prevent="seConnecter">
         <input v-model="email" type="text" placeholder="Email" />
@@ -17,6 +15,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   data() {
@@ -36,6 +35,7 @@ export default {
         .then((response) => {
           this.$store.commit('setMembre', response.data.member);
           this.$store.commit('setToken', response.data.token);
+          console.log(response.data.token);
           this.$router.push('/conversations');
         })
         .catch((error) => {
@@ -45,6 +45,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss">
 h2{
     font-family: 'Impact';

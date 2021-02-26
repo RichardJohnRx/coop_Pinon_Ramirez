@@ -1,37 +1,33 @@
 <template>
   <div>
     <Header/>
-    <div class="ui grid menu" id="addContainer">
-      <sui-menu-menu id="addForm">
-        <form @submit.prevent="ajouterConversation" class="ui form" v-if="add">
-          <div class="fields">
-            <div class="field">
+    <sui-modal v-model="add">
+      <sui-modal-header>Créer une nouvelle conversation</sui-modal-header>
+      <sui-modal-content>
+        <sui-form>
+          <sui-form-fields fields="two">
+            <sui-form-field>
               <label>Label</label>
-              <input v-model="label" type="text" required>
-            </div>
-            <div class="field">
+              <input type="text" placeholder="Label" required v-model="label"/>
+            </sui-form-field>
+            <sui-form-field>
               <label>Topic</label>
-              <input v-model="topic" type="text" required>
-            </div>
-            <div class="item" id="btn">
-              <label>  </label>
-              <button class="ui icon inverted green button">
-                <i class="save link icon"></i>
-              </button>
-            </div>
-          </div>
-        </form>
-      </sui-menu-menu>
-      <sui-menu-menu position="right">
-        <button class="ui icon icon inverted orange padded button" @click="setAdd" v-if="add">
-          <i class="times link icon"></i>
-        </button>
-        <button class="ui icon icon inverted green padded button" @click="setAdd" v-else>
-          <i class="circular inverted olive add icon"></i>
-        </button>
-      </sui-menu-menu>
-    </div>
-    <div class="a-container">
+              <input type="text" placeholder="Topic" required v-model="topic"/>
+            </sui-form-field>
+          </sui-form-fields>
+        </sui-form>
+      </sui-modal-content>
+      <sui-modal-actions>
+        <sui-button negative @click.native="setAdd">
+          Cancel
+        </sui-button>
+        <sui-button positive @click.native="ajouterConversation">
+          Ajouter
+        </sui-button>
+      </sui-modal-actions>
+    </sui-modal>
+    <sui-button icon="plus circle" size="large" color="green" content="Ajouter" id="addbtn" @click="setAdd"></sui-button>
+    <div id="listConversations">
       <template v-for="conversation in $store.state.conversations">
         <Conversation :conversation="conversation"/>
       </template>
@@ -62,7 +58,6 @@ export default {
     chargerConversations(){
       api.get('channels').then(response => {
         this.$store.commit('setConversations',response.data);
-        console.log(response.data);
       });
     },
     ajouterConversation(){
@@ -72,7 +67,6 @@ export default {
       }).then(response => {
           alert('Conversation ajouté avec succès');
           this.setAdd();
-          this.effacerDonnees();
           this.chargerConversations();
       }).catch(error => {
         alert("Error : " + error);
@@ -80,6 +74,7 @@ export default {
     },
     setAdd(){
       this.add = !this.add;
+      this.effacerDonnees();
     },
     effacerDonnees(){
       this.topic = "";
@@ -89,21 +84,16 @@ export default {
 };
 </script>
 <style>
-  /*.a-container{
-    margin: 40px 0 0 0;
-
-  }*/
-  #addContainer{
-    border: none;
-    box-shadow: none;
+  #listConversations{
+    margin-top: 30px;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
   }
 
-  #addForm{
-    margin-left: 13em;
-  }
-
-  #btn::before{
-    content: none;
+  #addbtn{
+    position: fixed;
+    right: 20px;
+    top: 100px
   }
 
 </style>
