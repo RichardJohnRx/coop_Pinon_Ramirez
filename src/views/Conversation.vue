@@ -124,7 +124,6 @@ export default {
     chargerMessages(){
       api.get('channels/'+this.conversation.id+'/posts').then(response => {
         this.messages = response.data.reverse();
-        console.log(this.messages);
       }).catch(error => {
         alert("Error : " + error);
       })

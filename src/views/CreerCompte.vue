@@ -32,9 +32,8 @@ export default {
         password:this.password
       }).then(response =>{
         alert('Votre compte a été bien créé');
-        console.log(response.data);
         this.$router.push('/se-connecter');
-      }).catch(error=>{
+      }).catch(error => {
         var error = document.getElementById("error").style.display= "block";
       });
     }

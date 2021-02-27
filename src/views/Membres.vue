@@ -2,20 +2,21 @@
   <div>
     <Header/>
     <sui-modal v-model="infoMembre">
-      <sui-modal-header>Créer une nouvelle conversation</sui-modal-header>
-      <sui-modal-content>
-        <sui-form>
-          <sui-form-fields fields="two">
-            <sui-form-field>
-              <label>Label</label>
-              <input type="text" placeholder="Label" required v-model="label"/>
-            </sui-form-field>
-            <sui-form-field>
-              <label>Topic</label>
-              <input type="text" placeholder="Topic" required v-model="topic"/>
-            </sui-form-field>
-          </sui-form-fields>
-        </sui-form>
+      <sui-modal-header>Informations du membre</sui-modal-header>
+      <sui-modal-content image>
+        <sui-image
+            wrapped
+            size="medium"
+            src="static/images/avatar/large/rachel.png"
+        />
+        <sui-modal-description>
+          <sui-header>Default Profile Image</sui-header>
+          <p>
+            We've found the following gravatar image associated with your e-mail
+            address.
+          </p>
+          <p>Is it okay to use this photo?</p>
+        </sui-modal-description>
       </sui-modal-content>
       <sui-modal-actions>
         <sui-button @click.native="setInfoMembre">
@@ -23,7 +24,6 @@
         </sui-button>
       </sui-modal-actions>
     </sui-modal>
-    <sui-button icon="plus circle" size="large" color="green" content="Ajouter" id="addbtn" @click="setInfoMembre"></sui-button>
     <div id="listConversations">
       <template v-for="membre in $store.state.membres">
         <Membre :membre="membre"/>
@@ -42,7 +42,8 @@ export default {
     };
   },
   components: {
-    Header
+    Header,
+    Membre
   },
   mounted(){
     this.chargerMembres();
@@ -50,7 +51,7 @@ export default {
   },
   methods: {
     chargerMembres(){
-      api.get('membres').then(response => {
+      api.get('members').then(response => {
         this.$store.commit('setMembres',response.data);
       });
     },
@@ -62,16 +63,10 @@ export default {
 };
 </script>
 <style>
-#listConversations{
-  margin-top: 30px;
-  max-height: calc(100vh - 110px);
-  overflow-y: auto;
-}
-
-#addbtn{
-  position: fixed;
-  right: 20px;
-  top: 100px
-}
+  #listConversations{
+    margin-top: 30px;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+  }
 
 </style>
