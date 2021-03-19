@@ -51,15 +51,15 @@ export default {
     Conversation
   },
   mounted(){
-    this.chargerConversations();
-    this.$bus.$on('charger-conversations',this.chargerConversations);
+    if (localStorage.getItem('reloaded')) {
+      localStorage.removeItem('reloaded');
+    } else {
+      localStorage.setItem('reloaded', '1');
+      location.reload();
+    }
+    this.$bus.$emit('charger-conversations');
   },
   methods: {
-    chargerConversations(){
-      api.get('channels').then(response => {
-        this.$store.commit('setConversations',response.data);
-      });
-    },
     ajouterConversation(){
       api.post('channels',{
         label: this.label,
@@ -67,7 +67,7 @@ export default {
       }).then(response => {
           alert('Conversation ajouté avec succès');
           this.setAdd();
-          this.chargerConversations();
+          this.$bus.$emit('charger-conversations');
       }).catch(error => {
         alert("Error : " + error);
       })

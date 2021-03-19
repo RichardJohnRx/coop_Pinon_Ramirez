@@ -9,8 +9,8 @@ import 'semantic-ui-css/semantic.min.css';
 Vue.use(SuiVue);
 
 window.api = axios.create({
-  baseURL: 'https://tools.sopress.net/iut/coop/api/',
-  headers: { Authorization: '42cac5b89329027de97928bc9f9b9fcf26739577' }
+  baseURL: 'https://allweb.fun/coop/api/',
+  headers: { Authorization: '04e755be07aaaf9fae6a9618873b9332abefd167' }
 });
 
 Vue.config.productionTip = false

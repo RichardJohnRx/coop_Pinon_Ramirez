@@ -6,8 +6,8 @@
         <img src="https://istsansilvestre.com/wp-content/uploads/2020/11/1111.png"/>
       </div>
       <form class="login-form" @submit.prevent="seConnecter">
-        <input v-model="email" type="text" placeholder="Email" />
-        <input v-model="password" type="password" placeholder="Mot de passe" />
+        <input v-model="email" type="text" placeholder="Email" required/>
+        <input v-model="password" type="password" placeholder="Mot de passe" required/>
         <button>Se connecter</button>
         <u><p class="message"><router-link to="/creer-compte">Créer compte</router-link></p></u>
       </form>
@@ -24,7 +24,9 @@ export default {
       password: "",
     };
   },
-  mounted() {},
+  mounted() {
+
+  },
   methods: {
     seConnecter() {
       api
@@ -39,7 +41,7 @@ export default {
           this.$router.push('/conversations');
         })
         .catch((error) => {
-          var error = document.getElementById("error").style.display= "block";
+          alert("Error :" + error);
         });
     },
   },

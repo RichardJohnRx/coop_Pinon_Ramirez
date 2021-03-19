@@ -133,6 +133,7 @@ export default {
         member_id: this.$store.state.membre.id,
         message: this.message
       }).then(response => {
+        console.log(response);
         this.message = '';
         this.chargerMessages();
       }).catch(error => {

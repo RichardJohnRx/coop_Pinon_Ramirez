@@ -41,14 +41,8 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 #header{
     background-color: rgb(229, 253, 255);
-}
-
-#headerBottom{
-    text-align: center;
-    background-color: #303030;
-    color: white;
 }
 </style>

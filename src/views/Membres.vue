@@ -46,15 +46,9 @@ export default {
     Membre
   },
   mounted(){
-    this.chargerMembres();
-    this.$bus.$on('charger-membres',this.chargerMembres);
+    this.$bus.emit('charger-membres');
   },
   methods: {
-    chargerMembres(){
-      api.get('members').then(response => {
-        this.$store.commit('setMembres',response.data);
-      });
-    },
     setInfoMembre(){
       this.infoMembre = !this.infoMembre;
       this.effacerDonnees();
