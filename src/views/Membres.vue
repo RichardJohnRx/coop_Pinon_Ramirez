@@ -47,6 +47,7 @@ export default {
   },
   mounted(){
     this.$bus.emit('charger-membres');
+    console.log(this.$store.state.membres);
   },
   methods: {
     setInfoMembre(){

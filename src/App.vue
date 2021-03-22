@@ -47,7 +47,9 @@ export default {
 
     //Le methode
     this.$bus.$on('charger-conversations',this.chargerConversations);
+    this.chargerConversations();
     this.$bus.$on('charger-membres',this.chargerMembres);
+    this.chargerMembres()
   },
   methods:{
     chargerConversations(){

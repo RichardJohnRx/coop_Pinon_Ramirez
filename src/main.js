@@ -15,11 +15,11 @@ window.api = axios.create({
   headers: { Authorization: '04e755be07aaaf9fae6a9618873b9332abefd167' }
 });
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 //On crée une variable nommé $bus qui va mettre à disposition
 //des fonctions dans tout l'environnement de l'appli
-Vue.prototype.$bus = new Vue()
+Vue.prototype.$bus = new Vue();
 
 new Vue({
   beforeCreate() {
@@ -34,4 +34,4 @@ new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
